@@ -1,0 +1,97 @@
+@font-face {
+    font-family: "Conlan";
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+    src:url("fonts/conlan-black-solid.woff2") format("woff2"),
+        url("fonts/conlan-black-solid.woff") format("woff");
+}
+
+@font-face {
+  font-family: "ALS Wagon";
+  font-weight: regular;
+  font-style: normal;
+  font-display: swap;
+  src:url("fonts/ALS Wagon Regular.woff2") format("woff2"),
+      url("fonts/ALS Wagon Regular.woff") format("woff");
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  text-align: justify;
+  padding-left: 0.4em;
+}
+
+header h1 {
+
+  color: #9BF37C;
+
+  font-family: "Conlan", Arial, sans-serif;
+  font-weight: 800;
+  font-size: 35px;
+
+}
+
+.header-nav {
+  font-family: "ALS Wagon", 'Times New Roman', Times, serif, sans-serif;
+  font-weight: regular;
+  font-size: 35px;
+  color: #9BF37C;
+  text-decoration: none;
+  padding-right: 1em;
+}
+
+header nav,
+header h1
+  {
+  display: inline-block;
+}
+
+header::after {
+  content: "";
+  display: inline-block;
+  width: 100%;
+}
+
+@media screen and (max-width: 500px){
+     
+  header {
+      height: auto;
+  }
+   
+  header > div,
+  header > div h1,
+  header nav {
+      height: auto;
+      width: auto;
+      display: block;
+      text-align: center;
+  }
+   
+}
+
+.login-button {
+  display: inline-block;
+  border-radius: 11px;
+  background: #9BF37C;
+  padding: 0 1.5em;
+  margin: 0;
+  height: 38px;
+}
+
+.button-text {
+color: #434343;
+font-size: 1.3em;
+font-family: "ALS Wagon", 'Times New Roman', Times, serif, sans-serif;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+text-align: center;
+text-decoration: none;
+vertical-align: middle;
+margin-top: 0.5em;
+}
