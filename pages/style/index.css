@@ -36,15 +36,6 @@ header h1 {
 
 }
 
-.header-nav {
-  font-family: "ALS Wagon", 'Times New Roman', Times, serif, sans-serif;
-  font-weight: regular;
-  font-size: 35px;
-  color: #9BF37C;
-  text-decoration: none;
-  padding-right: 1em;
-}
-
 header nav,
 header h1
   {
@@ -55,23 +46,6 @@ header::after {
   content: "";
   display: inline-block;
   width: 100%;
-}
-
-@media screen and (max-width: 500px){
-     
-  header {
-      height: auto;
-  }
-   
-  header > div,
-  header > div h1,
-  header nav {
-      height: auto;
-      width: auto;
-      display: block;
-      text-align: center;
-  }
-   
 }
 
 .login-button {
