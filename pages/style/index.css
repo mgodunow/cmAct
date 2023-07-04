@@ -49,7 +49,6 @@ header h1,
 
 }
 
-header nav,
 header h1,
 .logo
   {
@@ -90,4 +89,54 @@ margin: 0;
 padding: 7px 2px;
 text-align: center;
 vertical-align: middle;
+}
+
+.introductory-wrap {
+  margin: 0;
+  padding: 0;
+  height: 310px;
+}
+
+.video, .introductory-text
+{
+  display: inline-block;
+}
+
+.introductory-wrap::after {
+  content: "";
+  display: inline-block;
+  width: 100%;
+}
+
+.introductory-text {
+  color: #454545;
+  font-size: 40px;
+  font-family: ALS Wagon;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 123.3%;
+  width: 539px;
+  height: 114px;
+  flex-direction: column;
+  flex-shrink: 0;
+  margin-left: 35px;
+  margin-top: 100px;
+}
+
+.video {
+  width: 550px;
+  height: 300px;
+  flex-shrink: 0;
+  border: 5px solid #9BF37C;
+  background: black;
+  text-align: center;
+  margin-left: 150px;
+}
+
+.video-text {
+  color: white;
+  font-family: ALS Wagon;
+  font-style: normal;
+  font-weight: 400;
+  margin-top: 136px;
 }
