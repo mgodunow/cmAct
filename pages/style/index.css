@@ -16,17 +16,30 @@
       url("fonts/ALS Wagon Regular.woff") format("woff");
 }
 
-body {
-  padding: 0;
-  margin: 0;
+@font-face {
+  font-family: "Matita Geometric";
+  font-weight: bolder;
+  font-style: normal;
+  font-display: swap;
+  src:url("fonts/matita-geometric.woff") format("woff"),
+      url("fonts/matita-geometric.woff2") format("woff2");
+}
+
+.header-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: default;
+  margin-bottom: 0;
+  height: inherit;
 }
 
 header {
-  text-align: justify;
-  padding-left: 0.4em;
+  height: 30px;
 }
 
-header h1 {
+header h1,
+.logo {
 
   color: #9BF37C;
 
@@ -37,7 +50,8 @@ header h1 {
 }
 
 header nav,
-header h1
+header h1,
+.logo
   {
   display: inline-block;
 }
@@ -50,22 +64,30 @@ header::after {
 
 .login-button {
   display: inline-block;
-  border-radius: 11px;
-  background: #9BF37C;
-  padding: 0 1.5em;
-  margin: 0;
-  height: 38px;
+  border-radius: 7px;
+  padding: 0 15px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.login-button {
+  background: linear-gradient(to left, #BAF87C, #F2FC84, #BAF87C);
+  background-size: 200%;
+  transition: 0.6s;
+}
+
+.login-button:hover {
+  background-position: right;
 }
 
 .button-text {
-color: #434343;
-font-size: 1.3em;
-font-family: "ALS Wagon", 'Times New Roman', Times, serif, sans-serif;
+color: #444444;
+font-size: 15px;
+font-family: "Matita Geometric", 'Times New Roman', Times, serif, sans-serif;
 font-style: normal;
-font-weight: 400;
-line-height: normal;
+font-weight: bolder;
+margin: 0;
+padding: 7px 2px;
 text-align: center;
-text-decoration: none;
 vertical-align: middle;
-margin-top: 0.5em;
 }
