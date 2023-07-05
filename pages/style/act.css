@@ -1,0 +1,168 @@
+@font-face {
+    font-family: "Conlan";
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+    src:url("fonts/conlan-black-solid.woff2") format("woff2"),
+        url("fonts/conlan-black-solid.woff") format("woff");
+}
+
+@font-face {
+    font-family: "ALS Wagon";
+    font-weight: regular;
+    font-style: normal;
+    font-display: swap;
+    src:url("fonts/ALS Wagon Regular.woff2") format("woff2"),
+        url("fonts/ALS Wagon Regular.woff") format("woff");
+  }
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.header-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: default;
+    margin-bottom: 0;
+    height: inherit;
+  }
+  
+  header {
+    height: 50px;
+    background: #9BF37C;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header h1,
+  .logo {
+  
+    color: white;
+  
+    font-family: "Conlan", Arial, sans-serif;
+    font-weight: 800;
+    font-size: 35px;
+  
+  }
+  
+  header h1,
+  .logo
+    {
+    display: inline-block;
+  }
+  
+  header::after {
+    content: "";
+    display: inline-block;
+    width: 100%;
+  }
+
+header h1 {
+    margin-left: 5px;
+}
+
+.logo-text {
+    transition: 0.45s;
+}
+
+.logo-text:hover {
+    color: #EDEDED;
+}
+
+.projects-div {
+    width: 331px;
+    height: 100%;
+    background: #F8F8F8;
+
+}
+
+.projects h1{
+    margin: 0;
+    font-family: ALS Wagon;
+    font-style: normal;
+    font-weight: 400;
+    color: #888888;
+    font-size: 23px;
+    padding-top: 60px;
+    padding-left: 15px;
+}
+
+
+hr {
+    background: linear-gradient(to left, #BAF87C, #F2FC84, #BAF87C);
+    border: 0;
+    background-size: 200%;
+    height: 2px;
+    width: 19em;
+    margin-top: 0;
+}
+
+.plus {
+    --b:3px; /* the thickness */
+    width:23px; /* the size */
+    aspect-ratio:1/1;
+    border:10px solid #F8F8F8; /* the outer space */
+    background:
+      conic-gradient(from 90deg at var(--b) var(--b),#F8F8F8 90deg,#ABABAB 0) 
+      calc(100% + var(--b)/2) calc(100% + var(--b)/2)/
+      calc(50%  + var(--b))   calc(50%  + var(--b));
+    display:inline-block;
+    float: right;
+    margin-right: 6px;
+    margin-top: 53px;
+ }
+
+ .projects,
+.plus
+  {
+  display: inline-block;
+}
+
+.projects-div::after {
+  content: "";
+  display: inline-block;
+  width: 100%;
+}
+
+
+.projects-list {
+    width: 331px;
+    height: 100%;
+  }
+  
+.projects-list p {
+    font-family: ALS Wagon;
+    font-style: normal;
+    font-weight: 400;
+    margin-left: 14px;
+  }
+
+.project-name,
+.projects-div {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+  
+.projects-wrap::after {
+    content: "";
+    display: inline-block;
+    width: 100%;
+}
+.projects-div {
+    float: left;
+}
+
+.project-name {
+    font-family: ALS Wagon;
+    font-style: normal;
+    font-weight: 400;
+    position: absolute;
+    font-size: 30px;
+    top:  12%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
