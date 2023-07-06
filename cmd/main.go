@@ -8,13 +8,13 @@ import (
 )
 
 func main() {
-	engine := html.New("./templates", ".html")
+	engine := html.New("../templates", ".html")
 
 	app := fiber.New(fiber.Config{
 		Views: engine,
 	})
 
-	app.Static("/static", "./styles")
+	app.Static("/static", "../styles")
 
 	app.Get("/", MainPage)
 

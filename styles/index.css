@@ -12,8 +12,8 @@
   font-weight: regular;
   font-style: normal;
   font-display: swap;
-  src:url("../fonts/ALS Wagon Regular.woff2") format("woff2"),
-      url("../fonts/ALS Wagon Regular.woff") format("woff");
+  src:url("../assets/fonts/ALS Wagon Regular.woff2") format("woff2"),
+      url("../assets/fonts/ALS Wagon Regular.woff") format("woff");
 }
 
 @font-face {
@@ -21,8 +21,8 @@
   font-weight: bolder;
   font-style: normal;
   font-display: swap;
-  src:url("../fonts/matita-geometric.woff") format("woff"),
-      url("../fonts/matita-geometric.woff2") format("woff2");
+  src:url("../assets/fonts/matita-geometric.woff") format("woff"),
+      url("../assets/fonts/matita-geometric.woff2") format("woff2");
 }
 
 .header-wrap {
