@@ -3,8 +3,8 @@
     font-weight: 800;
     font-style: normal;
     font-display: swap;
-    src:url("fonts/conlan-black-solid.woff2") format("woff2"),
-        url("fonts/conlan-black-solid.woff") format("woff");
+    src:url("../fonts/conlan-black-solid.woff2") format("woff2"),
+        url("../fonts/conlan-black-solid.woff") format("woff");
 }
 
 @font-face {
@@ -12,8 +12,8 @@
     font-weight: regular;
     font-style: normal;
     font-display: swap;
-    src:url("fonts/ALS Wagon Regular.woff2") format("woff2"),
-        url("fonts/ALS Wagon Regular.woff") format("woff");
+    src:url("../fonts/ALS Wagon Regular.woff2") format("woff2"),
+        url("../fonts/ALS Wagon Regular.woff") format("woff");
   }
 
 body {
