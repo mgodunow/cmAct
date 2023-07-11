@@ -14,13 +14,9 @@ func main() {
 		Views: engine,
 	})
 
-	app.Static("/static", "../styles")
-
-	app.Get("/", MainPage)
+	app.Static("/", "../templates", fiber.Static{
+		Index: "index.html",
+	})
 
 	log.Fatal(app.Listen(":8080"))
-}
-
-func MainPage(c *fiber.Ctx) error {
-	return c.Render("index", fiber.Map{})
 }

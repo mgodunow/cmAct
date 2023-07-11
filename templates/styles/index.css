@@ -12,8 +12,8 @@
   font-weight: regular;
   font-style: normal;
   font-display: swap;
-  src:url("../assets/fonts/ALS Wagon Regular.woff2") format("woff2"),
-      url("../assets/fonts/ALS Wagon Regular.woff") format("woff");
+  src:url("../fonts/ALS Wagon Regular.woff2") format("woff2"),
+      url("../fonts/ALS Wagon Regular.woff") format("woff");
 }
 
 @font-face {
@@ -21,8 +21,8 @@
   font-weight: bolder;
   font-style: normal;
   font-display: swap;
-  src:url("../assets/fonts/matita-geometric.woff") format("woff"),
-      url("../assets/fonts/matita-geometric.woff2") format("woff2");
+  src:url("../fonts/matita-geometric.woff") format("woff"),
+      url("../fonts/matita-geometric.woff2") format("woff2");
 }
 
 .header-wrap {
@@ -82,7 +82,7 @@ header::after {
 .button-text {
 color: #444444;
 font-size: 15px;
-font-family: "Matita Geometric", 'Times New Roman', Times, serif, sans-serif;
+font-family: "Matita Geometric", sans-serif;
 font-style: normal;
 font-weight: bolder;
 margin: 0;
@@ -111,7 +111,7 @@ vertical-align: middle;
 .introductory-text {
   color: #454545;
   font-size: 40px;
-  font-family: ALS Wagon;
+  font-family:"ALS Wagon", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 123.3%;
@@ -135,7 +135,7 @@ vertical-align: middle;
 
 .video-text {
   color: white;
-  font-family: ALS Wagon;
+  font-family:"ALS Wagon", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   margin-top: 136px;

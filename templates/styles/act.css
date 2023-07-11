@@ -3,8 +3,8 @@
     font-weight: 800;
     font-style: normal;
     font-display: swap;
-    src:url("../assets/fonts/conlan-black-solid.woff2") format("woff2"),
-        url("../assets/fonts/conlan-black-solid.woff") format("woff");
+    src:url("../fonts/conlan-black-solid.woff2") format("woff2"),
+        url("../fonts/conlan-black-solid.woff") format("woff");
 }
 
 @font-face {
@@ -12,8 +12,8 @@
     font-weight: regular;
     font-style: normal;
     font-display: swap;
-    src:url("../assets/fonts/ALS Wagon Regular.woff2") format("woff2"),
-        url("../assets/fonts/ALS Wagon Regular.woff") format("woff");
+    src:url("../fonts/ALS Wagon Regular.woff2") format("woff2"),
+        url("../fonts/ALS Wagon Regular.woff") format("woff");
   }
 
 body {
@@ -81,7 +81,7 @@ header h1 {
 
 .projects h1{
     margin: 0;
-    font-family: ALS Wagon;
+    font-family: "ALS Wagon";
     font-style: normal;
     font-weight: 400;
     color: #888888;
@@ -134,9 +134,9 @@ hr {
   }
   
 .projects-list p {
-    font-family: ALS Wagon;
-    font-style: normal;
-    font-weight: 400;
+  font-family:"ALS Wagon", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
     margin-left: 14px;
   }
 
@@ -157,9 +157,9 @@ hr {
 }
 
 .project-name {
-    font-family: ALS Wagon;
-    font-style: normal;
-    font-weight: 400;
+  font-family:"ALS Wagon", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
     position: absolute;
     font-size: 30px;
     top:  12%;
