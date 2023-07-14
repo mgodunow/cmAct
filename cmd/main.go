@@ -6,6 +6,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/template/html/v2"
 
+	_ "cmAct/internal/models"
 	"cmAct/internal/routes"
 )
 
@@ -17,10 +18,6 @@ func main() {
 	})
 
 	routes.RegisterRoutes(app)
-
-	app.Static("/", "../templates", fiber.Static{
-		Index: "index.html",
-	})
 
 	log.Fatal(app.Listen(":8080"))
 }

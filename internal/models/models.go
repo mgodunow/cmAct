@@ -1,13 +1,18 @@
 package models
 
 import (
+	"context"
 	"database/sql"
 
 	"cmAct/internal/config"
+
+	"github.com/sirupsen/logrus"
 )
 
+var ctx context.Context
 var db *sql.DB
 
+// Need a validation on logrin and registration structures later,
 type (
 	LoginRequest struct {
 		Email    string `json:"email"`
@@ -44,4 +49,27 @@ type (
 func init() {
 	config.DbConnect()
 	db = config.GetDb()
+}
+
+// By default, the user is not connected to the bot, a check for interaction with it will be added later
+func Register(a *Account) *Account {
+	_, err := db.Exec("INSERT INTO accounts(username, password, email, bot) VALUES(?, ?, ?, ?)", a.Username, a.Password, a.Email, false)
+	if err != nil {
+		logrus.Warn("Something went wrong while put new account in accounts table", " error: ", err)
+	}
+	return a
+}
+
+func GetAccount(username string) (*Account, error) {
+	var a Account
+	row := db.QueryRow("SELECT * FROM accounts WHERE username=?", username)
+	err := row.Scan(&a.Username, &a.Email, &a.Password, &a.Bot)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return &Account{}, err
+		}
+		logrus.Warn("Error while scanning the rows", " error: ", err)
+		return &Account{}, err
+	}
+	return &a, nil
 }
