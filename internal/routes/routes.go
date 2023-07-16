@@ -7,9 +7,7 @@ import (
 )
 
 var RegisterRoutes = func(app *fiber.App) {
-	app.Static("/", "../templates", fiber.Static{
-		Index: "index.html",
-	})
+	app.Static("/", "../templates")
 	// app.Post("/login", controllers.Login)
 	app.Post("/registration", controllers.Register)
 	// app.Get("/profile", controllers.Profile)

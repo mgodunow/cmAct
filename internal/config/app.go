@@ -2,7 +2,6 @@ package config
 
 import (
 	"database/sql"
-	"fmt"
 
 	"cmAct/internal/utils"
 
@@ -17,7 +16,6 @@ func DbConnect() {
 	var pass string
 	utils.ReadPassDB(&pass)
 
-	fmt.Println(pass)
 	connectionString := "cmAct:" + pass + "@tcp(localhost:3306)/cmAct"
 
 	d, err := sql.Open("mysql", connectionString)

@@ -12,7 +12,7 @@ import (
 var ctx context.Context
 var db *sql.DB
 
-// Need a validation on logrin and registration structures later,
+// Need a validation on login and registration structures later,
 type (
 	LoginRequest struct {
 		Email    string `json:"email"`
