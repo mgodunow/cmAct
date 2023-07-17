@@ -5,6 +5,8 @@ const registerLink = document.querySelector('.register-link');
 const btnPopup = document.querySelector('.login-button');
 const iconClose = document.querySelector('.icon-close');
 const overlay = document.querySelector('.overlay');
+var formLogin = document.getElementById('login-form');
+var formRegister = document.getElementById('register-form');
 
 registerLink.addEventListener('click', ()=> {
     wrapper.classList.add('active');
@@ -28,3 +30,57 @@ overlay.addEventListener('click', ()=> {
     wrapper.classList.remove('active-popup');
     modalWrapper.classList.remove('active-popup');
 })
+
+formRegister.onsubmit = function(event){
+        event.preventDefault();
+        var xhr = new XMLHttpRequest();
+        var formData = new FormData(formRegister);
+        var values = formData.values();
+
+        username = values.next().value;
+        email = values.next().value;
+        password = values.next().value;
+        
+        if (!isValidUsename(username)) {
+            alert('The user name can contain only numbers and Latin letters and have a length of 5 to 30 characters');
+            return;
+          }
+        if (!isValidPassword(password)) {
+            alert('The password must contain at least one uppercase letter, one lowercase letter and one digit and be between 8 and 30 characters long');
+            return;
+        }
+        //open the request
+        xhr.open('POST','http://localhost:8080/registration')
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        //send the form data
+        xhr.send(JSON.stringify(Object.fromEntries(formData)));
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                if (xhr.status != 201) {
+                    alert(xhr.responseText);
+                    return;
+                }
+                wrapper.classList.remove('active-popup');
+                modalWrapper.classList.remove('active-popup');
+                formRegister.reset();
+                alert(xhr.responseText);
+            }
+        }
+        //Fail the onsubmit to avoid page refresh.
+        return false; 
+}
+
+function isValidUsename(username) {
+    const pattern = /^[a-zA-Z0-9]{5,30}$/;
+    if (username.length >= 5 || username.length <= 30) {
+        return pattern.test(username);
+    }
+    return;
+    }
+      
+function isValidPassword(password) {
+    const pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,30}$/;
+    return pattern.test(password);
+    }

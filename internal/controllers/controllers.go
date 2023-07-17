@@ -18,22 +18,22 @@ func Register(c *fiber.Ctx) error {
 		return err
 	}
 
-	_, err := models.GetAccount(regRequest.Username)
+	_, err := models.GetAccountByField(regRequest.Username)
 	switch err {
 	case sql.ErrNoRows:
-		var a = models.Account{
-			Username: regRequest.Username,
-			Email:    regRequest.Email,
-			Password: regRequest.Password,
-			Bot:      false,
+		_, err2 := models.GetAccountByField(regRequest.Email)
+		if err2 == sql.ErrNoRows {
+			var a = models.Account{
+				Username: regRequest.Username,
+				Email:    regRequest.Email,
+				Password: regRequest.Password,
+				Bot:      false,
+			}
+			models.Register(&a)
+			return c.Status(fiber.StatusCreated).SendString("Account successfully created")
 		}
-		models.Register(&a)
-		c.SendStatus(fiber.StatusCreated)
-		return c.Redirect("/")
 	case nil:
-		logrus.Info("An account with the same email or username already exists")
-		c.SendStatus(fiber.StatusConflict)
-		return c.Redirect("/")
+		return c.Status(fiber.StatusOK).SendString("An account with such data already exists")
 	}
-	return c.SendStatus(fiber.StatusInternalServerError)
+	return c.Status(fiber.StatusInternalServerError).SendString("Something went wrong. Please try again")
 }

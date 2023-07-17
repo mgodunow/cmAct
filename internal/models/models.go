@@ -60,9 +60,9 @@ func Register(a *Account) *Account {
 	return a
 }
 
-func GetAccount(username string) (*Account, error) {
+func GetAccountByField(field string) (*Account, error) {
 	var a Account
-	row := db.QueryRow("SELECT * FROM accounts WHERE username=?", username)
+	row := db.QueryRow("SELECT * FROM accounts WHERE username=?", field)
 	err := row.Scan(&a.Username, &a.Email, &a.Password, &a.Bot)
 	if err != nil {
 		if err == sql.ErrNoRows {
