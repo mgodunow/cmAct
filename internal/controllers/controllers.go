@@ -4,6 +4,7 @@ import (
 	"database/sql"
 
 	"cmAct/internal/models"
+	"cmAct/internal/utils"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/sirupsen/logrus"
@@ -28,6 +29,10 @@ func Register(c *fiber.Ctx) error {
 				Email:    regRequest.Email,
 				Password: regRequest.Password,
 				Bot:      false,
+			}
+			valid := utils.RegisterValidate(a.Username, a.Email, a.Password)
+			if !valid {
+				return c.Status(fiber.StatusOK).SendString("Invalid data for registration is indicated. Please try again")
 			}
 			models.Register(&a)
 			return c.Status(fiber.StatusCreated).SendString("Account successfully created")
