@@ -11,6 +11,8 @@ import (
 )
 
 func main() {
+	// Here you will need to set the waiting time for a response from the server,
+	// the maximum number of requests, and if I remember something else
 	engine := html.New("../templates", ".html")
 
 	app := fiber.New(fiber.Config{
