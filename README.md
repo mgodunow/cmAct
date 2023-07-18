@@ -1,1 +1,3 @@
 # cmAct
+cmAct is, in fact, a regular task scheduler. But designed specifically for the needs of people who want to receive rewards in the world of cryptocurrencies. The key feature of the project is the joint operation of the cmAct web application with the telegram bot of the same name, which will be implemented later. They will exchange data, constantly being adjusted depending on the current tasks of the user and their state.
+Technology stack: golang/fiber, mySQL, Docker, telegramBotAPI, and some javascript.
