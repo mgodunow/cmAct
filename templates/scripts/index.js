@@ -42,9 +42,15 @@ formRegister.onsubmit = function(event){
         password = values.next().value;
         
         if (!isValidUsename(username)) {
-            alert('The user name can contain only numbers and Latin letters and have a length of 5 to 30 characters');
+            alert('The username can contain only numbers and Latin letters and have a length of 5 to 30 characters');
             return;
           }
+        
+        if (!isValidEmail(email)) {
+            alert('Email is incorrect. Try again or use another email');
+            return;
+        }
+
         if (!isValidPassword(password)) {
             alert('The password must contain at least one uppercase letter, one lowercase letter and one digit and be between 8 and 30 characters long');
             return;
@@ -84,3 +90,43 @@ function isValidPassword(password) {
     const pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,30}$/;
     return pattern.test(password);
     }
+
+function isValidEmail(email) {
+    const pattern = /^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$/;
+    return pattern.test(email);
+}
+
+formLogin.onsubmit = function(event) {
+    event.preventDefault();
+    var xhr = new XMLHttpRequest();
+    var formData = new FormData(formLogin);
+    var values = formData.values();
+
+    usernameOrEmail = values.next();
+
+    if (!usernameOrEmail.contains("@")) {
+        if (!isValidUsename(usernameOrEmail)) {
+            alert('The user name can contain only numbers and Latin letters and have a length of 5 to 30 characters');
+            return;
+        }}
+    if (!isValidEmail(usernameOrEmail)) {
+        alert('Email is incorrect. Try again or use another email');
+        return;
+        }
+
+    xhr.open('POST','http://localhost:8080/registration')
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    //send the form data
+    xhr.send(JSON.stringify(Object.fromEntries(formData)));
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            formLogin.reset();
+            // Send data from available jwt tokens and write them to local storage.
+            // Further requests where authorization is required, send jwt from localstorage and validate
+            // on the backend side.
+        }
+    return false;
+    }
+}

@@ -15,8 +15,8 @@ var db *sql.DB
 // Need a validation on login and registration structures later,
 type (
 	LoginRequest struct {
-		Email    string `json:"email"`
-		Password string `json:"password"`
+		UsernameOrEmail string `json:"email"`
+		Password        string `json:"password"`
 	}
 
 	RegsterRequest struct {
@@ -60,9 +60,23 @@ func Register(a *Account) *Account {
 	return a
 }
 
-func GetAccountByField(field string) (*Account, error) {
+func GetAccountByUsername(username string) (*Account, error) {
 	var a Account
-	row := db.QueryRow("SELECT * FROM accounts WHERE username=?", field)
+	row := db.QueryRow("SELECT * FROM accounts WHERE username=?", username)
+	err := row.Scan(&a.Username, &a.Email, &a.Password, &a.Bot)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return &Account{}, err
+		}
+		logrus.Warn("Error while scanning the rows", " error: ", err)
+		return &Account{}, err
+	}
+	return &a, nil
+}
+
+func GetAccountByEmail(email string) (*Account, error) {
+	var a Account
+	row := db.QueryRow("SELECT * FROM accounts WHERE username=?", email)
 	err := row.Scan(&a.Username, &a.Email, &a.Password, &a.Bot)
 	if err != nil {
 		if err == sql.ErrNoRows {
