@@ -5,25 +5,37 @@ import (
 	"os"
 	"regexp"
 	"strings"
+	"time"
 	"unicode"
 
+	"github.com/dgrijalva/jwt-go"
 	"github.com/sirupsen/logrus"
 )
 
-func ReadPassDB(pass *string) {
+type tokenClaims struct {
+	jwt.StandardClaims
+	Email string `json:"username"`
+}
+
+var (
+	secretPhrase = ReadSecret("secret_phrase")
+)
+
+func ReadSecret(variableName string) string {
 	var line string
 	file, err := os.Open("../config.txt")
 	if err != nil {
-		logrus.Warn("Error while reading DB password from config.txt")
+		logrus.Warn("Error while reading variable from config.txt")
 	}
 	defer file.Close()
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		line = scanner.Text()
-		if strings.Contains(line, "cmActDb_pass") {
-			*pass = strings.Split(line, "=")[1]
+		if strings.Contains(line, variableName) {
+			return strings.Split(line, "=")[1]
 		}
 	}
+	return ""
 }
 
 func RegisterValidate(username string, email string, password string) bool {
@@ -49,8 +61,8 @@ func emailValidate(email string) bool {
 
 func passwordValidate(pass string) bool {
 	var (
-		upp, low, num, sym bool
-		tot                uint8
+		upp, low, num bool
+		tot           uint8
 	)
 
 	for _, char := range pass {
@@ -64,17 +76,25 @@ func passwordValidate(pass string) bool {
 		case unicode.IsNumber(char):
 			num = true
 			tot++
-		case unicode.IsPunct(char) || unicode.IsSymbol(char):
-			sym = true
-			tot++
 		default:
 			return false
 		}
 	}
 
-	if !upp || !low || !num || !sym || tot < 8 || tot > 30 {
+	if !upp || !low || !num || tot < 8 || tot > 30 {
 		return false
 	}
 
 	return true
+}
+
+func GenerateToken(email string) (string, error) {
+	t := jwt.NewWithClaims(jwt.SigningMethodHS256, &tokenClaims{
+		jwt.StandardClaims{
+			ExpiresAt: time.Now().Add(12 * time.Hour).Unix(),
+			IssuedAt:  time.Now().Unix(),
+		},
+		email,
+	})
+	return t.SignedString([]byte(secretPhrase))
 }

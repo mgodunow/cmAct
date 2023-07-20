@@ -12,6 +12,7 @@ import (
 
 // Later will add check on bot activity and encryption of password.
 // Also need to catch answers from server on client side and make an popups with pushes(Success register, or conflict, or 502).
+// Register need a refactor later.
 func Register(c *fiber.Ctx) error {
 	regRequest := models.RegsterRequest{}
 	if err := c.BodyParser(&regRequest); err != nil {
@@ -19,11 +20,12 @@ func Register(c *fiber.Ctx) error {
 		return err
 	}
 
-	_, err := models.GetAccountByField(regRequest.Username)
+	_, err := models.GetAccountByUsername(regRequest.Username)
 	switch err {
 	case sql.ErrNoRows:
-		_, err2 := models.GetAccountByField(regRequest.Email)
-		if err2 == sql.ErrNoRows {
+		_, err2 := models.GetAccountByEmail(regRequest.Email)
+		switch err2 {
+		case sql.ErrNoRows:
 			var a = models.Account{
 				Username: regRequest.Username,
 				Email:    regRequest.Email,
@@ -36,9 +38,32 @@ func Register(c *fiber.Ctx) error {
 			}
 			models.Register(&a)
 			return c.Status(fiber.StatusCreated).SendString("Account successfully created")
+		default:
+			return c.Status(fiber.StatusOK).SendString("An account with such data already exists")
 		}
-	case nil:
+	default:
 		return c.Status(fiber.StatusOK).SendString("An account with such data already exists")
 	}
-	return c.Status(fiber.StatusInternalServerError).SendString("Something went wrong. Please try again")
+}
+
+func Login(c *fiber.Ctx) error {
+	var loginRequest models.LoginRequest
+	if err := c.BodyParser(&loginRequest); err != nil {
+		logrus.Info(fiber.ErrBadRequest, " error: ", err)
+		return err
+	}
+	a, err := models.GetAccountByEmail(loginRequest.Email)
+	if err != nil || (*a == models.Account{}) {
+		return c.Status(fiber.StatusUnauthorized).SendString("There is no account with provided email")
+	}
+	if a.Password != loginRequest.Password {
+		return c.Status(fiber.StatusUnauthorized).SendString("Wrong password. Please, try again")
+	}
+
+	token, err := utils.GenerateToken(a.Email)
+	if err == nil {
+		return c.Status(fiber.StatusOK).JSON(models.Token{Token: token})
+	}
+
+	return c.Status(fiber.StatusUnauthorized).SendString("Authorization error. Please, try again")
 }

@@ -102,14 +102,15 @@ formLogin.onsubmit = function(event) {
     var formData = new FormData(formLogin);
     var values = formData.values();
 
-    usernameOrEmail = values.next();
+    Email = values.next().value;
 
-    if (!usernameOrEmail.contains("@")) {
-        if (!isValidUsename(usernameOrEmail)) {
-            alert('The user name can contain only numbers and Latin letters and have a length of 5 to 30 characters');
-            return;
-        }}
-    if (!isValidEmail(usernameOrEmail)) {
+    //In future will be able to login with username, but now only with email.
+    // if (!usernameOrEmail.contains("@")) {
+    //     if (!isValidUsename(usernameOrEmail)) {
+    //         alert('The user name can contain only numbers and Latin letters and have a length of 5 to 30 characters');
+    //         return;
+    //     }}
+    if (!isValidEmail(Email)) {
         alert('Email is incorrect. Try again or use another email');
         return;
         }
@@ -122,6 +123,9 @@ formLogin.onsubmit = function(event) {
 
     xhr.onreadystatechange = function() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
+            if (xhr.status != 200) {
+                alert(xhr.responseText);
+            }
             formLogin.reset();
             // Send data from available jwt tokens and write them to local storage.
             // Further requests where authorization is required, send jwt from localstorage and validate

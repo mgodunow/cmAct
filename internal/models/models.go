@@ -15,8 +15,8 @@ var db *sql.DB
 // Need a validation on login and registration structures later,
 type (
 	LoginRequest struct {
-		UsernameOrEmail string `json:"email"`
-		Password        string `json:"password"`
+		Email    string `json:"email"`
+		Password string `json:"password"`
 	}
 
 	RegsterRequest struct {
@@ -27,8 +27,8 @@ type (
 
 	Account struct {
 		Username string
-		Email    string
 		Password string
+		Email    string
 		Bot      bool
 	}
 
@@ -43,6 +43,10 @@ type (
 		Name     string
 		Link     string
 		//time
+	}
+
+	Token struct {
+		Token string `json:"token"`
 	}
 )
 
@@ -63,7 +67,7 @@ func Register(a *Account) *Account {
 func GetAccountByUsername(username string) (*Account, error) {
 	var a Account
 	row := db.QueryRow("SELECT * FROM accounts WHERE username=?", username)
-	err := row.Scan(&a.Username, &a.Email, &a.Password, &a.Bot)
+	err := row.Scan(&a.Username, &a.Password, &a.Email, &a.Bot)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			return &Account{}, err
@@ -76,8 +80,8 @@ func GetAccountByUsername(username string) (*Account, error) {
 
 func GetAccountByEmail(email string) (*Account, error) {
 	var a Account
-	row := db.QueryRow("SELECT * FROM accounts WHERE username=?", email)
-	err := row.Scan(&a.Username, &a.Email, &a.Password, &a.Bot)
+	row := db.QueryRow("SELECT * FROM accounts WHERE email=?", email)
+	err := row.Scan(&a.Username, &a.Password, &a.Email, &a.Bot)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			return &Account{}, err

@@ -13,8 +13,7 @@ var db *sql.DB
 
 func DbConnect() {
 
-	var pass string
-	utils.ReadPassDB(&pass)
+	pass := utils.ReadSecret("cmActDb_pass")
 
 	connectionString := "cmAct:" + pass + "@tcp(localhost:3306)/cmAct"
 
