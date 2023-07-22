@@ -3,6 +3,7 @@ package controllers
 import (
 	"database/sql"
 
+	"cmAct/internal/hash"
 	"cmAct/internal/models"
 	"cmAct/internal/utils"
 
@@ -56,7 +57,7 @@ func Login(c *fiber.Ctx) error {
 	if err != nil || (*a == models.Account{}) {
 		return c.Status(fiber.StatusUnauthorized).SendString("There is no account with provided email")
 	}
-	if a.Password != loginRequest.Password {
+	if a.Password != hash.Hash(loginRequest.Password) {
 		return c.Status(fiber.StatusUnauthorized).SendString("Wrong password. Please, try again")
 	}
 

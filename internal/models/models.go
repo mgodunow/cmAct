@@ -5,6 +5,7 @@ import (
 	"database/sql"
 
 	"cmAct/internal/config"
+	"cmAct/internal/hash"
 
 	"github.com/sirupsen/logrus"
 )
@@ -57,7 +58,7 @@ func init() {
 
 // By default, the user is not connected to the bot, a check for interaction with it will be added later
 func Register(a *Account) *Account {
-	_, err := db.Exec("INSERT INTO accounts(username, password, email, bot) VALUES(?, ?, ?, ?)", a.Username, a.Password, a.Email, false)
+	_, err := db.Exec("INSERT INTO accounts(username, password, email, bot) VALUES(?, ?, ?, ?)", a.Username, hash.Hash(a.Password), a.Email, false)
 	if err != nil {
 		logrus.Warn("Something went wrong while put new account in accounts table", " error: ", err)
 	}
