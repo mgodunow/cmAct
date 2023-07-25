@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cmAct</title>
+    <link rel="stylesheet" href="../static/styles/index.css">
+    <link rel="stylesheet" href="../static/styles/profile.css">
+</head>
+<body>
+    <header>
+        <div class="header-wrap">
+            <div class="logo">
+              <h1 class="logo-text">cmAct</h1>
+            </div>
+            <div class="act-button">
+              <h2 class="button-text">Acts</h2>
+            </div>
+    </header>
+    <!-- Here is would be username -->
+    <div class="profile-text">
+    <p id="username">Profile</p>
+    </div>
+    <div class="avatar"></div>
+    
+    <div class="forms-wrapper">
+        <form id="change-email">
+            <div class="input-box">
+                <span class="icon">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                </span>
+                <label class="password-label">Password</label>
+                <input type="password" name="password" required>
+            </div>
+            <div class="input-box">
+                <span class="icon">
+                    <ion-icon name="mail-outline"></ion-icon>
+                </span>
+                <label id="new-email">New email</label>
+                <input type="email" name="email" required>
+                <button type="submit" class="btn-login-form">Change email</button>
+            </div>
+        </form>
+        <form id="change-password">
+            <div class="input-box">
+                <span class="icon">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                </span>
+                <label id="old-password-label">Old password</label>
+                <input type="password" name="OldPassword" required>
+            </div>
+            <div class="input-box">
+                <span class="icon">
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                </span>
+                <label id="new-password-label">New password</label>
+                <input type="password" name="newPassword" required>
+                <button type="submit" class="btn-login-form">Change password</button>
+            </div>
+        </form>
+    </div>
+    <script src="../static/scripts/profile.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+</body>
+</html>

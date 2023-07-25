@@ -1,0 +1,141 @@
+@font-face {
+    font-family: "Conlan";
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+    src:url("../fonts/conlan-black-solid.woff2") format("woff2"),
+        url("../fonts/conlan-black-solid.woff") format("woff");
+}
+
+@font-face {
+  font-family: "ALS Wagon";
+  font-weight: regular;
+  font-style: normal;
+  font-display: swap;
+  src:url("../fonts/ALS Wagon Regular.woff2") format("woff2"),
+      url("../fonts/ALS Wagon Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Matita Geometric";
+  font-weight: bolder;
+  font-style: normal;
+  font-display: swap;
+  src:url("../fonts/matita-geometric.woff") format("woff"),
+      url("../fonts/matita-geometric.woff2") format("woff2");
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.header-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: default;
+    height: inherit;
+  }
+  
+  header {
+    height: 50px;
+    background: #9BF37C;
+  }
+  
+  header h1,
+  .logo {
+  
+    color: white;
+  
+    font-family: "Conlan", Arial, sans-serif;
+    font-weight: 800;
+    font-size: 35px;
+  
+  }
+
+.button-text, .profile-text {
+    color: white;
+    font-family: "ALS Wagon";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26px;
+    margin-right: 100px;
+    padding-top: 12px;
+}
+.profile-text {
+    width: 100%;
+}
+
+#username {
+    color:#595959;
+    text-align: center;
+    margin: 0;
+}
+  
+  
+  header h1,
+  .logo
+    {
+    display: inline-block;
+  }
+  
+  header::after {
+    content: "";
+    display: inline-block;
+    width: 100%;
+  }
+
+header h1 {
+    margin-left: 5px;
+}
+
+.logo-text, .button-text {
+    cursor: pointer;
+    transition: 0.45s;
+}
+
+.logo-text:hover, .button-text:hover {
+    color: #EDEDED;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #a7a7a7;
+    left: 50%;
+    top: 50%;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+.forms-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    width: 100%;
+}
+
+form {
+    width: 200px;
+    height: 150px;
+    display: inline-block;
+    margin: 0 50px;
+}
+
+.btn-login-form {
+    font-size: 14px;
+    margin-top: 30px;
+}
+
+.icon {
+    padding: 9px;
+}
+#old-password-label, #new-password-label {
+    margin-left: 27px;
+}
+
+#new-email {
+    margin-left: 15px;
+}
