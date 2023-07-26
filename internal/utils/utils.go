@@ -5,20 +5,9 @@ import (
 	"os"
 	"regexp"
 	"strings"
-	"time"
 	"unicode"
 
-	"github.com/dgrijalva/jwt-go"
 	"github.com/sirupsen/logrus"
-)
-
-type tokenClaims struct {
-	jwt.StandardClaims
-	Email string `json:"username"`
-}
-
-var (
-	secretPhrase = ReadSecret("secret_phrase")
 )
 
 func ReadSecret(variableName string) string {
@@ -86,15 +75,4 @@ func passwordValidate(pass string) bool {
 	}
 
 	return true
-}
-
-func GenerateToken(email string) (string, error) {
-	t := jwt.NewWithClaims(jwt.SigningMethodHS256, &tokenClaims{
-		jwt.StandardClaims{
-			ExpiresAt: time.Now().Add(12 * time.Hour).Unix(),
-			IssuedAt:  time.Now().Unix(),
-		},
-		email,
-	})
-	return t.SignedString([]byte(secretPhrase))
 }

@@ -4,6 +4,7 @@ import (
 	"database/sql"
 
 	"cmAct/internal/hash"
+	jwtGenerate "cmAct/internal/jwt"
 	"cmAct/internal/models"
 	"cmAct/internal/utils"
 
@@ -61,7 +62,7 @@ func Login(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusUnauthorized).SendString("Wrong password. Please, try again")
 	}
 
-	token, err := utils.GenerateToken(a.Email)
+	token, err := jwtGenerate.GenerateToken(a.Email)
 	if err == nil {
 		return c.Status(fiber.StatusOK).JSON(models.Token{Token: token})
 	}
