@@ -127,11 +127,10 @@ formLogin.onsubmit = function(event) {
                 return;
             }
             token = jwtParse(xhr.responseText);
-            localStorage.setItem("jwt", token);
-            formLogin.reset();
+            document.cookie = "token=" + token;
             wrapper.classList.remove('active-popup');
             modalWrapper.classList.remove('active-popup');
-            formLogin.reset();
+            location.reload();
         }
     return false;
     }
