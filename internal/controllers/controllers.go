@@ -4,7 +4,7 @@ import (
 	"database/sql"
 
 	"cmAct/internal/hash"
-	jwtGenerate "cmAct/internal/jwt"
+	"cmAct/internal/jwt"
 	"cmAct/internal/models"
 	"cmAct/internal/utils"
 
@@ -62,10 +62,20 @@ func Login(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusUnauthorized).SendString("Wrong password. Please, try again")
 	}
 
-	token, err := jwtGenerate.GenerateToken(a.Email)
+	token, err := jwt.GenerateToken(a.Email)
 	if err == nil {
 		return c.Status(fiber.StatusOK).JSON(models.Token{Token: token})
 	}
 
 	return c.Status(fiber.StatusUnauthorized).SendString("Authorization error. Please, try again")
+}
+
+func Home(c *fiber.Ctx) error {
+	username, err := jwt.ParseToken(c.Cookies("token"))
+	if err != nil {
+		return err
+	}
+	return c.Render("home", fiber.Map{
+		"username": username,
+	})
 }

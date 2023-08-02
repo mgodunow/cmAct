@@ -1,0 +1,146 @@
+@font-face {
+    font-family: "Conlan";
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+    src:url("../fonts/conlan-black-solid.woff2") format("woff2"),
+        url("../fonts/conlan-black-solid.woff") format("woff");
+}
+
+@font-face {
+  font-family: "ALS Wagon";
+  font-weight: regular;
+  font-style: normal;
+  font-display: swap;
+  src:url("../fonts/ALS Wagon Regular.woff2") format("woff2"),
+      url("../fonts/ALS Wagon Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Matita Geometric";
+  font-weight: bolder;
+  font-style: normal;
+  font-display: swap;
+  src:url("../fonts/matita-geometric.woff") format("woff"),
+      url("../fonts/matita-geometric.woff2") format("woff2");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.header-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: default;
+  margin-bottom: 0;
+  height: inherit;
+}
+      
+header {
+  height: 50px;
+  background: #9BF37C;
+  margin: 0;
+  padding: 0;
+}
+      
+header h1,
+.logo {
+      
+  color: white;
+      
+  font-family: "Conlan", Arial, sans-serif;
+  font-weight: 800;
+  font-size: 35px;
+      
+}
+      
+header h1,
+  .logo
+  {
+  display: inline-block;
+}
+      
+header::after {
+    content: "";
+    display: inline-block;
+    width: 100%;
+}
+    
+header h1 {
+  margin-left: 5px;
+}
+    
+.logo-text {
+  transition: 0.45s;
+}
+
+.button-text {
+color: white;
+font-size: 17px;
+font-family: "Matita Geometric", sans-serif;
+font-style: normal;
+font-weight: bolder;
+margin: 15px;
+padding: 7px 2px;
+text-align: center;
+vertical-align: middle;
+}
+
+.acts-link, .profile-link {
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+}
+
+.introductory-wrap {
+  margin: 0;
+  padding: 0;
+  height: 310px;
+}
+
+.video, .introductory-text
+{
+  display: inline-block;
+}
+
+.introductory-wrap::after {
+  content: "";
+  display: inline-block;
+  width: 100%;
+}
+
+.introductory-text {
+  color: #454545;
+  font-size: 40px;
+  font-family:"ALS Wagon", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 123.3%;
+  width: 539px;
+  height: 114px;
+  flex-direction: column;
+  flex-shrink: 0;
+  margin-left: 35px;
+  margin-top: 100px;
+}
+
+.video {
+  width: 550px;
+  height: 300px;
+  flex-shrink: 0;
+  border: 5px solid #9BF37C;
+  background: black;
+  text-align: center;
+  margin-left: 150px;
+}
+
+.video-text {
+  color: white;
+  font-family:"ALS Wagon", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  margin-top: 136px;
+}

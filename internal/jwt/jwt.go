@@ -1,7 +1,9 @@
 package jwt
 
 import (
+	"cmAct/internal/models"
 	"cmAct/internal/utils"
+	"errors"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
@@ -25,4 +27,28 @@ func GenerateToken(email string) (string, error) {
 		email,
 	})
 	return t.SignedString([]byte(secretPhrase))
+}
+
+func ParseToken(accessToken string) (string, error) {
+	token, err := jwt.ParseWithClaims(accessToken, &tokenClaims{}, func(token *jwt.Token) (interface{}, error) {
+		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+			return nil, errors.New("invalid signing method")
+		}
+		return []byte(secretPhrase), nil
+	})
+
+	if err != nil {
+		return "", err
+	}
+
+	claims, ok := token.Claims.(*tokenClaims)
+	if !ok {
+		return "", errors.New("token claims are not of type *token.Claims")
+	}
+	acc, err := models.GetAccountByEmail(claims.Email)
+	if err != nil {
+		return "", err
+	}
+
+	return acc.Username, nil
 }

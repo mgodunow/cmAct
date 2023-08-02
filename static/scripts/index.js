@@ -127,10 +127,10 @@ formLogin.onsubmit = function(event) {
                 return;
             }
             token = jwtParse(xhr.responseText);
-            document.cookie = "token=" + token;
+            document.cookie = `token=${token}; path='/'`;
             wrapper.classList.remove('active-popup');
             modalWrapper.classList.remove('active-popup');
-            location.reload();
+            location.href = "/home" // Modify when app woulb be installed on server
         }
     return false;
     }
