@@ -1,6 +1,6 @@
-package account
+package user
 
-type Account struct {
+type User struct {
 	Username string
 	PasswordHash string
 	Email    string
