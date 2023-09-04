@@ -1,31 +1,10 @@
 package utils
 
 import (
-	"bufio"
-	"os"
 	"regexp"
-	"strings"
 	"unicode"
-
-	"github.com/sirupsen/logrus"
 )
 
-func ReadSecret(variableName string) string {
-	var line string
-	file, err := os.Open("../config.txt")
-	if err != nil {
-		logrus.Warn("Error while reading variable from config.txt")
-	}
-	defer file.Close()
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		line = scanner.Text()
-		if strings.Contains(line, variableName) {
-			return strings.Split(line, "=")[1]
-		}
-	}
-	return ""
-}
 
 func RegisterValidate(username string, email string, password string) bool {
 	uV := usernameValidate(username)

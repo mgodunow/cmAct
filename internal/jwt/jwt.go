@@ -1,8 +1,6 @@
 package jwt
 
 import (
-	"cmAct/internal/models"
-	"cmAct/internal/utils"
 	"errors"
 	"time"
 
@@ -14,11 +12,8 @@ type tokenClaims struct {
 	Email string `json:"username"`
 }
 
-var (
-	secretPhrase = utils.ReadSecret("secret_phrase")
-)
 
-func GenerateToken(email string) (string, error) {
+func GenerateToken(email, secretPhrase string) (string, error) {
 	t := jwt.NewWithClaims(jwt.SigningMethodHS256, &tokenClaims{
 		jwt.StandardClaims{
 			ExpiresAt: time.Now().Add(12 * time.Hour).Unix(),
@@ -29,7 +24,9 @@ func GenerateToken(email string) (string, error) {
 	return t.SignedString([]byte(secretPhrase))
 }
 
-func ParseToken(accessToken string) (string, error) {
+//TODO: refactor parsetoken. parsetoken should return username, not email
+
+func ParseToken(accessToken, secretPhrase string) (string, error) {
 	token, err := jwt.ParseWithClaims(accessToken, &tokenClaims{}, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, errors.New("invalid signing method")
@@ -45,10 +42,6 @@ func ParseToken(accessToken string) (string, error) {
 	if !ok {
 		return "", errors.New("token claims are not of type *token.Claims")
 	}
-	acc, err := models.GetAccountByEmail(claims.Email)
-	if err != nil {
-		return "", err
-	}
 
-	return acc.Username, nil
+	return claims.Email, nil
 }
